@@ -5,6 +5,8 @@
  */
 package euler_17;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Kacper
@@ -19,47 +21,51 @@ public class Euler_17 {
         String[][] numbers = 
             {
                 {"one","two","three","four","five","six","seven","eight","nine"},
-                {"ten","twenty","thirty","fourty","fifty","sixty","seventy","eighty","ninety"},
+                {"ten","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"},
                 {"hundred"},
-                {"thousand"}
+                {"thousand"},
+                {"eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"},
             };
         
-
-        String sumL="";
-        String sumAll="";
-        int x ;
-        for(int j=1;j<1001;j++){
-            x=j;
-            for(int i =0;i<String.valueOf(j).length();i++){
-                if(i>1&&x%10>0){
-                    sumL += numbers[i][0];
-                    //sumL +=" ";
-                    sumL += numbers[0][(x%10)-1];
-                    //sumL += " ";
+        String digitWord="";
+        String digitWords="";
+        for(int i=1;i<1001;i++){
+            int[] digits = digits(i);
+            System.out.println(Arrays.toString(digits));
+            for(int j=0; j<digits.length;j++){
+                
+                if(j>1&&digits[j]>0){ 
+                    digitWord += numbers[j][0];
+                    digitWord += numbers[0][digits[j]-1];
                 }
-
-                else if(x%10>0){
-                    sumL += numbers[i][(x%10)-1];
-                    if(String.valueOf(j).length()>2&&i==0){
-                        //sumL+="-";
+                else if(digits[j]>0||digits[j]!=1&&j!=1&&digitWord.length()!=0){
+                    if(digits.length>1&&digits[1]==1&&digits[0]>0){
+                        digitWord += numbers[4][digits[j]-1];
+                        j++;
                     }else{
-                        //sumL += " ";
+                        digitWord += numbers[j][digits[j]-1];
                     }
                 }
-
-                if(String.valueOf(j).length()>2&&i==1&&sumL.length()!=0){
-                    sumL += "and";
+                if(digits.length>2&&j==1&&digitWord.length()!=0){
+                    digitWord += "and";
                 }
-                x=x/10;
-              
+                
             }
-            System.out.println(sumL);
-            sumAll+=sumL;
-            sumL="";
-            //sumL="";
+            System.out.println(digitWord);
+            digitWords+=digitWord;
+            digitWord = "";
         }
-          //  System.out.println(sumL);
-        System.out.println(sumAll.length());
+        System.out.println(digitWords.length());
     }
     
+    public static int[] digits(int value){
+        int valueDigits = String.valueOf(value).length();
+        int[] digits = new int[valueDigits];
+        int temp = value;
+        for(int i=0; i<valueDigits;i++){
+            digits[i] = temp%10;
+            temp /=10;
+        }
+        return digits;
+    }
 }
