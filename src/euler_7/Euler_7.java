@@ -1,0 +1,41 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package euler_7;
+
+/**
+ *
+ * @author Kacper
+ */
+public class Euler_7 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        int j=2,i=0;
+        while(true){
+            if(isPrime(j)){
+                i++;
+            }
+            if(i==10001){
+                System.out.println(j);
+                break;
+            }
+            j++;
+        }
+    }
+    
+    public static boolean isPrime(int value){
+        for(int i=1;i<value+1;i++){
+            if(value%i==0&&i!=value&&i!=1){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+}
