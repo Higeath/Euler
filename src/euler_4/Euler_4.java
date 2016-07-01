@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package euler_4;
-
-
 /**
  *
  * @author Kacper
@@ -17,24 +15,19 @@ public class Euler_4 {
      */
     public static void main(String[] args) {
       System.out.println(palindrome3digits());
-    
     }
     
     public static int palindrome3digits(){
-        
-    int value = 0, highest =0;
-        
-    for(int x=100;x<999;x++){
-        for(int y=100;y<999;y++){
-            value = x*y;
-            if(isPalindrome(value)&&value>highest){
-                 highest = value;
+        int value = 0, highest =0;
+        for(int x=100;x<1000;x++){
+            for(int y=100;y<1000;y++){
+                value = x*y;
+                if(isPalindrome(value)&&value>highest){
+                     highest = value;
+                }
             }
         }
-    }
-    return highest;
-
-    
+        return highest;
     }
     public static boolean isPalindrome(int value){
         String number = String.valueOf(value);
@@ -49,8 +42,5 @@ public class Euler_4 {
             return true;
         }
         return false;
-
     }
- 
-
 }
